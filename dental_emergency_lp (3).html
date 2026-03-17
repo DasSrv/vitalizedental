@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Dental Emergency – Same-Day Relief | Vitalize Dental FL</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --blue:#0077c0;--blue-dark:#005fa3;--blue-light:#e6f3fb;
+    --blue-xlight:#f0f8ff;--red:#d62828;--white:#fff;
+    --text:#1a2a3a;--text-muted:#5a7a9a;--border:#d0e8f5;
+  }
+  body{font-family:'Segoe UI',sans-serif;background:var(--white);color:var(--text);overflow-x:hidden}
+
+  .reveal{opacity:0;transform:translateY(36px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.left{transform:translateX(-40px)}
+  .reveal.right{transform:translateX(40px)}
+  .reveal.scale{transform:scale(.92)}
+  .reveal.visible{opacity:1;transform:none}
+
+  .stagger>*{opacity:0;transform:translateY(28px);transition:opacity .55s ease,transform .55s ease}
+  .stagger.visible>*:nth-child(1){opacity:1;transform:none;transition-delay:.05s}
+  .stagger.visible>*:nth-child(2){opacity:1;transform:none;transition-delay:.15s}
+  .stagger.visible>*:nth-child(3){opacity:1;transform:none;transition-delay:.25s}
+  .stagger.visible>*:nth-child(4){opacity:1;transform:none;transition-delay:.35s}
+  .stagger.visible>*:nth-child(5){opacity:1;transform:none;transition-delay:.45s}
+  .stagger.visible>*:nth-child(6){opacity:1;transform:none;transition-delay:.55s}
+  .stagger.visible>*:nth-child(7){opacity:1;transform:none;transition-delay:.65s}
+  .stagger.visible>*:nth-child(8){opacity:1;transform:none;transition-delay:.75s}
+
+  .top-bar{background:var(--red);text-align:center;padding:9px 16px;font-size:13.5px;font-weight:700;color:#fff;letter-spacing:.3px;position:relative;overflow:hidden}
+  .top-bar::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);animation:shimmer 3s infinite}
+  @keyframes shimmer{to{left:160%}}
+  .top-bar a{color:#fff;text-decoration:none;font-weight:900;margin-left:8px}
+
+  header{position:sticky;top:0;z-index:999;background:var(--white);border-bottom:2px solid var(--border);box-shadow:0 2px 12px rgba(0,119,192,.1);transition:box-shadow .3s}
+  header.scrolled{box-shadow:0 4px 24px rgba(0,119,192,.18)}
+  .header-inner{max-width:1200px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .logo img{height:48px;width:auto;display:block;transition:transform .3s}
+  .logo img:hover{transform:scale(1.04)}
+  .header-right{display:flex;align-items:center;gap:14px}
+  .header-phone{display:flex;align-items:center;gap:7px;text-decoration:none;color:var(--text);font-weight:800;font-size:1rem;transition:color .2s}
+  .header-phone:hover{color:var(--blue)}
+  .header-phone .ph-icon{background:var(--blue-light);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:background .2s}
+  .header-phone:hover .ph-icon{background:#c8e4f5}
+  .btn-book{background:var(--blue);color:#fff;padding:11px 24px;border-radius:50px;font-size:.9rem;font-weight:800;text-decoration:none;transition:.25s;white-space:nowrap;position:relative;overflow:hidden}
+  .btn-book::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,.15);transform:translateX(-100%);transition:transform .3s}
+  .btn-book:hover::after{transform:translateX(0)}
+  .btn-book:hover{background:var(--blue-dark);transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,119,192,.35)}
+  @media(max-width:580px){
+    .header-phone span{display:none}
+    .logo img{height:38px}
+    .btn-book{padding:9px 16px;font-size:.82rem}
+  }
+
+  .hero{background:var(--blue);padding:70px 20px 0;overflow:hidden;position:relative}
+  .hero-particles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+  .particle{position:absolute;border-radius:50%;background:rgba(255,255,255,.07);animation:floatUp linear infinite}
+  @keyframes floatUp{0%{transform:translateY(0) scale(1);opacity:.7}100%{transform:translateY(-110vh) scale(1.5);opacity:0}}
+  .hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;position:relative;z-index:1}
+  @media(max-width:760px){.hero-inner{grid-template-columns:1fr;text-align:center}}
+  .hero-badge{display:inline-block;background:var(--red);color:#fff;font-size:11.5px;font-weight:800;letter-spacing:1px;padding:5px 16px;border-radius:20px;margin-bottom:16px;text-transform:uppercase;animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(214,40,40,.5)}50%{box-shadow:0 0 0 12px rgba(214,40,40,0)}}
+  .hero h1{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:900;line-height:1.15;color:#fff;margin-bottom:16px;animation:fadeSlideUp .8s ease .1s both}
+  .hero h1 span{color:#ffe066;position:relative;display:inline-block}
+  .hero h1 span::after{content:'';position:absolute;bottom:-4px;left:0;width:100%;height:3px;background:#ffe066;border-radius:2px;transform:scaleX(0);transform-origin:left;animation:underlineIn .6s ease .9s forwards}
+  @keyframes underlineIn{to{transform:scaleX(1)}}
+  @keyframes fadeSlideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+  .hero p.subhead{font-size:1.05rem;color:rgba(255,255,255,.82);line-height:1.7;margin-bottom:28px;max-width:480px;animation:fadeSlideUp .8s ease .3s both}
+  @media(max-width:760px){
+    .hero p.subhead{margin:0 auto 28px;font-size:.95rem}
+    .hero h1{font-size:clamp(1.8rem,6vw,2.6rem)}
+  }
+  .hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:32px;animation:fadeSlideUp .8s ease .5s both}
+  @media(max-width:760px){.hero-ctas{justify-content:center}}
+  @media(max-width:400px){
+    .hero-ctas{flex-direction:column;align-items:stretch}
+    .btn-white,.btn-outline{justify-content:center;width:100%}
+  }
+  .btn-white{background:#fff;color:var(--blue);padding:15px 32px;border-radius:50px;font-size:1rem;font-weight:800;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:.25s;position:relative;overflow:hidden}
+  .btn-white:hover{background:#e6f3fb;transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.15)}
+  .btn-outline{background:transparent;color:#fff;padding:15px 28px;border-radius:50px;font-size:.95rem;font-weight:700;text-decoration:none;border:2px solid rgba(255,255,255,.5);display:inline-flex;align-items:center;gap:8px;transition:.25s}
+  .btn-outline:hover{border-color:#fff;background:rgba(255,255,255,.12);transform:translateY(-2px)}
+  .trust-strip{display:flex;flex-wrap:wrap;gap:18px;padding-bottom:32px;animation:fadeSlideUp .8s ease .7s both}
+  @media(max-width:760px){.trust-strip{justify-content:center;gap:10px}}
+  .trust-item{font-size:.83rem;color:rgba(255,255,255,.78);display:flex;align-items:center;gap:5px}
+  .hero-img-wrap{position:relative;align-self:flex-end;animation:heroImgIn 1s ease .2s both}
+  @keyframes heroImgIn{from{opacity:0;transform:translateX(40px) scale(.97)}to{opacity:1;transform:none}}
+  .hero-img{width:100%;max-width:520px;border-radius:20px 20px 0 0;display:block;object-fit:cover;height:440px}
+  @media(max-width:760px){.hero-img{max-width:100%;height:260px;border-radius:16px;margin-bottom:30px}}
+  .hero-badge-float{position:absolute;bottom:24px;left:-20px;background:#fff;border-radius:14px;padding:14px 18px;box-shadow:0 8px 30px rgba(0,0,0,.18);display:flex;align-items:center;gap:10px;animation:badgeFloat 3s ease-in-out infinite}
+  @keyframes badgeFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+  @media(max-width:760px){.hero-badge-float{display:none}}
+  .hbf-icon{font-size:1.6rem}
+  .hbf-text strong{display:block;font-size:.95rem;font-weight:900;color:var(--text)}
+  .hbf-text span{font-size:.75rem;color:var(--text-muted)}
+
+  .pain{background:var(--red);padding:24px 20px;text-align:center;color:#fff;position:relative;overflow:hidden}
+  .pain::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(255,255,255,.03) 10px,rgba(255,255,255,.03) 20px)}
+  .pain h2{font-size:clamp(1rem,2.8vw,1.4rem);font-weight:800;position:relative}
+  .pain p{font-size:.88rem;margin-top:5px;opacity:.9;position:relative}
+
+  .section{padding:64px 20px;max-width:1100px;margin:0 auto}
+  @media(max-width:600px){.section{padding:44px 16px}}
+  .section-title{text-align:center;margin-bottom:40px}
+  .section-title h2{font-size:clamp(1.5rem,3.5vw,2.1rem);font-weight:900;color:var(--text)}
+  .section-title h2 span{color:var(--blue)}
+  .section-title p{color:var(--text-muted);margin-top:8px;font-size:.95rem}
+
+  .conditions-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px}
+  @media(max-width:480px){.conditions-grid{grid-template-columns:repeat(2,1fr)}}
+  .condition-card{background:var(--blue-xlight);border:1.5px solid var(--border);border-radius:14px;padding:20px 14px;text-align:center;transition:border-color .25s,transform .25s,box-shadow .25s;cursor:default;position:relative;overflow:hidden}
+  .condition-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,119,192,.08),transparent);opacity:0;transition:opacity .3s}
+  .condition-card:hover::before{opacity:1}
+  .condition-card:hover{border-color:var(--blue);transform:translateY(-5px) scale(1.02);box-shadow:0 12px 28px rgba(0,119,192,.13)}
+  .condition-icon{font-size:1.9rem;margin-bottom:8px;display:block;transition:transform .3s}
+  .condition-card:hover .condition-icon{transform:scale(1.2) rotate(-5deg)}
+  .condition-card h3{font-size:.88rem;font-weight:700;color:var(--text)}
+
+  .photo-strip-bg{background:var(--blue-xlight)}
+  .photo-strip{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px;max-width:1100px;margin:0 auto;padding:0 20px 60px}
+  @media(max-width:680px){
+    .photo-strip{grid-template-columns:1fr 1fr}
+    .photo-strip img:first-child{grid-column:span 2;height:200px}
+    .photo-strip img{height:130px}
+  }
+  @media(max-width:400px){
+    .photo-strip{grid-template-columns:1fr}
+    .photo-strip img:first-child{grid-column:span 1;height:200px}
+    .photo-strip img{height:180px}
+  }
+  .photo-strip img{width:100%;border-radius:14px;object-fit:cover;transition:transform .4s ease,box-shadow .4s ease;cursor:default}
+  .photo-strip img:hover{transform:scale(1.03);box-shadow:0 12px 32px rgba(0,119,192,.18)}
+  .photo-strip img:first-child{height:320px}
+  .photo-strip img:not(:first-child){height:154px}
+
+  .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+  @media(max-width:480px){.why-grid{grid-template-columns:1fr 1fr;gap:12px}}
+  @media(max-width:360px){.why-grid{grid-template-columns:1fr}}
+  .why-card{background:var(--white);border-radius:14px;padding:28px 22px;text-align:center;border:1.5px solid var(--border);box-shadow:0 2px 12px rgba(0,119,192,.06);transition:transform .3s,box-shadow .3s,border-color .3s}
+  .why-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,119,192,.12);border-color:var(--blue)}
+  .why-number{font-size:2.4rem;font-weight:900;color:var(--blue);line-height:1}
+  .why-label{font-size:.78rem;color:var(--text-muted);margin-top:4px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+  .why-desc{font-size:.88rem;margin-top:10px;line-height:1.6;color:var(--text)}
+  .pain-free-icon{font-size:2.4rem;line-height:1;display:block}
+
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+  @media(max-width:720px){.split{grid-template-columns:1fr;gap:28px}}
+  .split img{width:100%;border-radius:18px;object-fit:cover;height:380px;transition:transform .5s ease,box-shadow .5s ease}
+  .split img:hover{transform:scale(1.02);box-shadow:0 16px 48px rgba(0,119,192,.18)}
+  @media(max-width:720px){.split img{height:220px}}
+  .split-text h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:900;margin-bottom:14px}
+  .split-text h2 span{color:var(--blue)}
+  .split-text p{color:var(--text-muted);line-height:1.7;font-size:.95rem;margin-bottom:16px}
+  .check-list{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+  .check-list li{display:flex;align-items:flex-start;gap:10px;font-size:.92rem;color:var(--text);line-height:1.5}
+  .check-list li::before{content:'✓';background:var(--blue);color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:900;flex-shrink:0;margin-top:1px;transition:transform .2s}
+  .check-list li:hover::before{transform:scale(1.2)}
+
+  .steps-bg{background:var(--blue)}
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;position:relative}
+  .steps::before{content:'';position:absolute;top:24px;left:10%;right:10%;height:2px;background:rgba(255,255,255,.2);z-index:0}
+  @media(max-width:640px){.steps::before{display:none}}
+  @media(max-width:480px){.steps{grid-template-columns:1fr;gap:8px}}
+  .step{text-align:center;padding:20px;position:relative;z-index:1}
+  .step-num{width:50px;height:50px;background:#fff;color:var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:900;margin:0 auto 14px;transition:transform .3s,box-shadow .3s}
+  .step:hover .step-num{transform:scale(1.15) rotate(5deg);box-shadow:0 6px 20px rgba(0,0,0,.2)}
+  .step h3{font-size:1rem;font-weight:800;margin-bottom:6px;color:#fff}
+  .step p{font-size:.87rem;color:rgba(255,255,255,.75);line-height:1.6}
+
+  .reviews-bg{background:var(--blue-xlight)}
+  .reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+  @media(max-width:480px){.reviews-grid{grid-template-columns:1fr}}
+  .review-card{background:var(--white);border-radius:14px;padding:26px;border-left:4px solid var(--blue);box-shadow:0 2px 12px rgba(0,119,192,.08);transition:transform .3s,box-shadow .3s}
+  .review-card:hover{transform:translateY(-5px);box-shadow:0 14px 36px rgba(0,119,192,.13)}
+  .stars{color:#f5a623;font-size:1.1rem;margin-bottom:10px}
+  .review-text{font-size:.88rem;line-height:1.7;color:var(--text);margin-bottom:14px}
+  .reviewer{font-weight:700;font-size:.82rem;color:var(--text-muted)}
+
+  .final-cta{text-align:center;padding:72px 20px;background:var(--blue);position:relative;overflow:hidden}
+  .final-cta::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:rgba(255,255,255,.04);top:-200px;right:-150px;animation:rotateSlow 20s linear infinite}
+  .final-cta::after{content:'';position:absolute;width:400px;height:400px;border-radius:50%;background:rgba(255,255,255,.04);bottom:-150px;left:-100px;animation:rotateSlow 15s linear infinite reverse}
+  @keyframes rotateSlow{to{transform:rotate(360deg)}}
+  .final-cta h2{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;color:#fff;margin-bottom:12px;position:relative}
+  .final-cta p{color:rgba(255,255,255,.78);font-size:1rem;margin-bottom:28px;max-width:480px;margin-left:auto;margin-right:auto;position:relative}
+  .phone-big{font-size:clamp(2rem,5vw,3rem);font-weight:900;color:#ffe066;display:inline-block;margin-bottom:28px;text-decoration:none;letter-spacing:1px;position:relative;transition:.25s}
+  .phone-big:hover{color:#fff0a0;transform:scale(1.05)}
+  .phone-big::before{content:'';position:absolute;bottom:-4px;left:50%;right:50%;height:2px;background:#ffe066;transition:.3s;border-radius:2px}
+  .phone-big:hover::before{left:0;right:0}
+  .final-cta-btns{display:flex;justify-content:center;position:relative;margin-top:10px}
+  .btn-book-full{background:#fff;color:var(--blue);padding:18px 60px;border-radius:50px;font-size:1.1rem;font-weight:900;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:.25s;box-shadow:0 6px 24px rgba(0,0,0,.18);max-width:360px;width:100%;justify-content:center}
+  .btn-book-full:hover{background:#e6f3fb;transform:translateY(-3px);box-shadow:0 10px 32px rgba(0,0,0,.22)}
+  @media(max-width:480px){
+    .btn-book-full{padding:16px 32px;font-size:1rem}
+    .final-cta{padding:50px 16px}
+  }
+
+  .map-section{background:var(--blue-xlight);padding:0}
+  .map-section .section-title{padding:48px 20px 24px}
+  .map-wrap{width:100%;height:420px;overflow:hidden;border-top:2px solid var(--border)}
+  .map-wrap iframe{width:100%;height:100%;border:0;display:block}
+  .map-info-bar{background:var(--white);border-top:2px solid var(--border);padding:18px 20px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:24px;text-align:center}
+  .map-info-item{display:flex;align-items:center;gap:8px;font-size:.88rem;color:var(--text);font-weight:600}
+  .map-info-item span{font-size:1.2rem}
+  @media(max-width:480px){.map-wrap{height:300px}.map-info-bar{gap:14px;padding:14px 16px}}
+
+  footer{background:#003d63;padding:26px 20px;text-align:center;color:rgba(255,255,255,.55);font-size:.82rem}
+  footer a{color:rgba(255,255,255,.8);text-decoration:none}
+
+  .float-cta{position:fixed;bottom:22px;right:22px;background:var(--blue);color:#fff;padding:13px 20px;border-radius:50px;font-weight:900;font-size:.9rem;text-decoration:none;box-shadow:0 6px 24px rgba(0,119,192,.45);z-index:998;display:flex;align-items:center;gap:8px;transition:.25s;animation:bounceIn .6s ease .5s both}
+  @keyframes bounceIn{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+  .float-cta:hover{background:var(--blue-dark);transform:scale(1.06)}
+  .float-cta .ring{width:10px;height:10px;background:#22c55e;border-radius:50%;animation:ringPulse 1.5s infinite}
+  @keyframes ringPulse{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.6)}50%{box-shadow:0 0 0 6px rgba(34,197,94,0)}}
+  @media(max-width:400px){.float-cta{padding:11px 14px;font-size:.82rem;bottom:14px;right:14px}}
+
+  #booking-popup{position:fixed;bottom:28px;left:22px;z-index:9999;background:#fff;border-radius:14px;padding:14px 16px;box-shadow:0 8px 32px rgba(0,0,0,.15);display:flex;align-items:center;gap:12px;max-width:290px;width:calc(100% - 44px);border-left:4px solid #0077c0;transform:translateY(100px);opacity:0;transition:transform .45s cubic-bezier(.34,1.56,.64,1),opacity .4s ease;pointer-events:none}
+  .popup-dot{width:8px;height:8px;background:#22c55e;border-radius:50%;flex-shrink:0;animation:ringPulse 1.5s infinite}
+  @media(max-width:600px){#booking-popup{max-width:220px;padding:10px 12px;font-size:.82rem}}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  🚨 DENTAL EMERGENCY? We Will See You Today —
+  <a href="tel:9049065526">📞 (904) 906-5526</a>
+</div>
+
+<!-- HEADER -->
+<header id="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#"><img src="https://www.vitalizedentalfl.com/wp-content/uploads/2025/09/img-vitalize-dental-logo.svg" alt="Vitalize Dental Logo"/></a>
+    <div class="header-right">
+      <a class="header-phone" href="tel:9049065526">
+        <span class="ph-icon">📞</span>
+        <span>(904) 906-5526</span>
+      </a>
+      <a class="btn-book" href="https://book.allinone.dental/vitalize-dental?referrer_id=3&source=direct" target="_blank">Book Online</a>
+    </div>
+  </div>
+</header>
+
+<!-- FLOATING CTA -->
+<a class="float-cta" href="tel:9049065526">
+  <span class="ring"></span> Call Now – Same Day
+</a>
+
+<!-- BOOKING POPUP -->
+<div id="booking-popup">
+  <div style="font-size:2rem;line-height:1">🦷</div>
+  <div style="flex:1;min-width:0">
+    <div id="popup-name" style="font-weight:800;font-size:.88rem;color:#1a2a3a"></div>
+    <div id="popup-action" style="font-size:.78rem;color:#5a7a9a;margin-top:2px"></div>
+    <div id="popup-time" style="font-size:.72rem;color:#0077c0;font-weight:700;margin-top:3px"></div>
+  </div>
+  <div class="popup-dot"></div>
+</div>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-particles" id="particles"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">⚡ Same-Day Emergency Appointments Available</div>
+      <h1>Stop the Pain<br/><span>Right Now.</span><br/>We'll See You Today.</h1>
+      <p class="subhead">Cracked tooth, severe toothache, lost crown, swollen jaw — our emergency dental team in Florida relieves your pain fast. No waiting. No judgment.</p>
+      <div class="hero-ctas">
+        <a class="btn-white" href="tel:9049065526">📞 (904) 906-5526</a>
+        <a class="btn-outline" href="https://book.allinone.dental/vitalize-dental?referrer_id=3&source=direct" target="_blank">📅 Book Online</a>
+      </div>
+      <div class="trust-strip">
+        <span class="trust-item">⭐ 500+ 5-Star Reviews</span>
+        <span class="trust-item">⏱ Seen Within 1 Hour</span>
+        <span class="trust-item">💳 All Insurance Accepted</span>
+      </div>
+    </div>
+    <div class="hero-img-wrap">
+      <img class="hero-img" src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80" alt="Emergency dental care"/>
+      <div class="hero-badge-float">
+        <span class="hbf-icon">🏆</span>
+        <div class="hbf-text">
+          <strong>#1 Emergency Dentist</strong>
+          <span>Jacksonville, FL · 2024</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN BAND -->
+<div class="pain reveal">
+  <h2>⚠️ Ignoring a dental emergency can turn a $200 fix into a $2,000 problem.</h2>
+  <p>Infections spread fast. The longer you wait, the worse it gets. Call us now — (904) 906-5526.</p>
+</div>
+
+<!-- ── CONDITIONS ── -->
+<div style="background:var(--white)">
+<div class="section">
+  <div class="section-title reveal">
+    <h2>We Treat <span>Any</span> Dental Emergency</h2>
+    <p>Whatever you're experiencing — we've seen it and we can help.</p>
+  </div>
+  <div class="conditions-grid stagger">
+    <div class="condition-card"><span class="condition-icon">🦷</span><h3>Severe Toothache</h3></div>
+    <div class="condition-card"><span class="condition-icon">💔</span><h3>Cracked or Broken Tooth</h3></div>
+    <div class="condition-card"><span class="condition-icon">😮</span><h3>Knocked-Out Tooth</h3></div>
+    <div class="condition-card"><span class="condition-icon">👑</span><h3>Lost Crown or Filling</h3></div>
+    <div class="condition-card"><span class="condition-icon">🫧</span><h3>Abscess / Swelling</h3></div>
+    <div class="condition-card"><span class="condition-icon">🩸</span><h3>Bleeding Gums</h3></div>
+    <div class="condition-card"><span class="condition-icon">🔩</span><h3>Broken Braces or Wire</h3></div>
+    <div class="condition-card"><span class="condition-icon">😣</span><h3>Jaw Pain / TMJ</h3></div>
+  </div>
+</div>
+</div>
+
+<!-- ── OFFICE PHOTOS ── -->
+<div class="photo-strip-bg">
+  <div class="section-title reveal" style="padding:48px 20px 24px">
+    <h2>Our <span>Modern, Comfortable</span> Office</h2>
+    <p>State-of-the-art equipment. A calm, welcoming environment — even in a crisis.</p>
+  </div>
+  <div class="photo-strip stagger">
+    <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80" alt="Dental office reception"/>
+    <img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=400&q=80" alt="Dental treatment room"/>
+    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&q=80" alt="Emergency dental treatment"/>
+  </div>
+</div>
+
+<!-- ── WHY US ── -->
+<div style="background:var(--white)">
+<div class="section">
+  <div class="section-title reveal">
+    <h2>Why Patients Choose <span>Vitalize Dental</span></h2>
+  </div>
+  <div class="why-grid stagger">
+    <div class="why-card">
+      <div class="why-number">Same</div>
+      <div class="why-label">Day Appointments</div>
+      <p class="why-desc">Call in the morning, be seen before noon. We hold emergency slots every single day.</p>
+    </div>
+    <div class="why-card">
+      <span class="pain-free-icon">😌</span>
+      <div class="why-label" style="margin-top:8px">Pain Free Treatment</div>
+      <p class="why-desc">We use the latest gentle techniques to ensure your visit is as comfortable and pain-free as possible.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-number count-up" data-target="15" data-suffix="+">0</div>
+      <div class="why-label">Years Experience</div>
+      <p class="why-desc">Our experienced team has handled thousands of emergencies with calm, expert care.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-number count-up" data-target="100" data-suffix="%">0</div>
+      <div class="why-label">Transparent Pricing</div>
+      <p class="why-desc">We quote you upfront. No surprise bills. We work with most insurances.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ── SPLIT ── -->
+<div style="background:var(--blue-xlight)">
+<div class="section">
+  <div class="split">
+    <img class="reveal left" src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=700&q=80" alt="Dentist with patient"/>
+    <div class="split-text reveal right">
+      <h2>Compassionate Care <span>When You Need It Most</span></h2>
+      <p>Our team understands that dental emergencies are stressful. We go out of our way to make you feel calm, heard, and taken care of from the moment you call.</p>
+      <ul class="check-list">
+        <li>Gentle, pain-free techniques whenever possible</li>
+        <li>We explain every step before we do it</li>
+        <li>Clear pricing before any treatment begins</li>
+        <li>We work with your insurance or set up a payment plan</li>
+        <li>Family-friendly — we see adults and children</li>
+      </ul>
+      <a class="btn-book" href="tel:9049065526">📞 Call (904) 906-5526</a>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ── STEPS ── -->
+<div class="steps-bg">
+<div class="section">
+  <div class="section-title reveal">
+    <h2 style="color:#fff">Get Relief in <span style="color:#ffe066">3 Simple Steps</span></h2>
+    <p style="color:rgba(255,255,255,.7)">Fast, simple, stress-free.</p>
+  </div>
+  <div class="steps stagger">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Call or Book Online</h3>
+      <p>Reach us by phone or hit "Book Online." Tell us what's happening — we'll get you in today.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Same-Day Visit</h3>
+      <p>Come in. We'll examine, X-ray, and diagnose — then walk you through a clear treatment plan.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Pain Gone. Problem Solved.</h3>
+      <p>We treat you the same day whenever possible. Walk out feeling relief — not dread.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ── REVIEWS ── -->
+<div class="reviews-bg">
+<div class="section">
+  <div class="section-title reveal">
+    <h2>Real Patients. <span>Real Relief.</span></h2>
+    <p>Don't just take our word for it.</p>
+  </div>
+  <div class="reviews-grid stagger">
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"I called at 8am with a broken tooth and was in the chair by 10am. The pain was gone same day. They were calm, professional, and so kind."</p>
+      <span class="reviewer">— Maria T., Jacksonville FL</span>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"My son knocked out a tooth playing soccer. We panicked and called Vitalize Dental. They saw us within the hour. Tooth saved!"</p>
+      <span class="reviewer">— David R., Jacksonville FL</span>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"Had an abscess Friday afternoon. Every other dentist said 'come Monday.' Vitalize Dental got me in, treated it same day. Absolute lifesavers."</p>
+      <span class="reviewer">— Sandra K., Jacksonville FL</span>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ── FINAL CTA ── -->
+<div class="final-cta reveal scale">
+  <h2>Don't Suffer Another Minute.</h2>
+  <p>Our team is ready to help you right now — same day, no runaround.</p>
+  <a class="phone-big" href="tel:9049065526">📞 (904) 906-5526</a>
+  <div class="final-cta-btns">
+    <a class="btn-book-full" href="https://book.allinone.dental/vitalize-dental?referrer_id=3&source=direct" target="_blank">📅 Book Your Appointment Online</a>
+  </div>
+  <p style="margin-top:20px;font-size:.8rem;color:rgba(255,255,255,.5)">Mon–Fri 8am–6pm · Saturday 9am–3pm · Emergency line available</p>
+</div>
+
+<!-- ── MAP SECTION ── -->
+<div class="map-section">
+  <div class="section-title reveal" style="padding:48px 20px 24px">
+    <h2>Find <span>Vitalize Dental</span></h2>
+    <p>Conveniently located in Jacksonville, FL — ready to see you today.</p>
+  </div>
+  <div class="map-wrap">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3484.5!2d-81.5158!3d30.3322!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sVitalize+Dental+FL!5e0!3m2!1sen!2sus!4v1699000000000!5m2!1sen!2sus&q=Vitalize+Dental+FL+Jacksonville"
+      title="Vitalize Dental Location"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+  <div class="map-info-bar">
+    <div class="map-info-item"><span>📍</span> Jacksonville, FL</div>
+    <div class="map-info-item"><span>📞</span> <a href="tel:9049065526" style="color:var(--blue);font-weight:800">(904) 906-5526</a></div>
+    <div class="map-info-item"><span>🕐</span> Mon–Fri 8am–6pm · Sat 9am–3pm</div>
+    <div class="map-info-item"><span>🌐</span> <a href="https://www.vitalizedentalfl.com" target="_blank" style="color:var(--blue);font-weight:800">vitalizedentalfl.com</a></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Vitalize Dental FL · All Rights Reserved</p>
+  <p style="margin-top:6px">📍 Jacksonville, FL · <a href="tel:9049065526">📞 (904) 906-5526</a></p>
+  <p style="margin-top:8px;font-size:.73rem;opacity:.6">If you are experiencing a life-threatening emergency, please call 911.</p>
+</footer>
+
+<script>
+const pc=document.getElementById('particles');
+for(let i=0;i<18;i++){
+  const p=document.createElement('div');
+  const s=20+Math.random()*60;
+  p.className='particle';
+  p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;bottom:${-s}px;animation-duration:${8+Math.random()*14}s;animation-delay:${Math.random()*10}s`;
+  pc.appendChild(p);
+}
+const revealEls=document.querySelectorAll('.reveal,.stagger');
+const ro=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target)}});
+},{threshold:.12});
+revealEls.forEach(el=>ro.observe(el));
+function countUp(el){
+  const target=+el.dataset.target;
+  const suffix=el.dataset.suffix||'';
+  const dur=1400,step=16;
+  const inc=target/(dur/step);
+  let cur=0;
+  const t=setInterval(()=>{
+    cur=Math.min(cur+inc,target);
+    el.textContent=Math.floor(cur)+suffix;
+    if(cur>=target)clearInterval(t);
+  },step);
+}
+const countEls=document.querySelectorAll('.count-up');
+const co=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){countUp(e.target);co.unobserve(e.target)}});
+},{threshold:.3});
+countEls.forEach(el=>co.observe(el));
+window.addEventListener('scroll',()=>{
+  document.getElementById('site-header').classList.toggle('scrolled',window.scrollY>40);
+},{passive:true});
+const bookings=[
+  {name:"Sarah M.",action:"Just booked a same-day emergency slot",time:"2 minutes ago"},
+  {name:"James R.",action:"Booked for a broken tooth — today",time:"5 minutes ago"},
+  {name:"Linda K.",action:"Secured an emergency appointment",time:"8 minutes ago"},
+  {name:"Carlos D.",action:"Just called for a toothache",time:"11 minutes ago"},
+  {name:"Ashley T.",action:"Booked online for tooth pain",time:"3 minutes ago"},
+  {name:"Mike F.",action:"Reserved a same-day slot",time:"Just now"},
+  {name:"Priya N.",action:"Booked for a lost crown — today",time:"6 minutes ago"},
+  {name:"Tom B.",action:"Scheduled an emergency visit",time:"9 minutes ago"},
+  {name:"Rachel S.",action:"Just booked online",time:"1 minute ago"},
+  {name:"David L.",action:"Called in for jaw swelling",time:"4 minutes ago"},
+];
+const popup=document.getElementById('booking-popup');
+let idx=Math.floor(Math.random()*bookings.length);
+function showPopup(){
+  const b=bookings[idx%bookings.length];idx++;
+  document.getElementById('popup-name').textContent=b.name;
+  document.getElementById('popup-action').textContent=b.action;
+  document.getElementById('popup-time').textContent='⏱ '+b.time;
+  popup.style.pointerEvents='auto';popup.style.transform='translateY(0)';popup.style.opacity='1';
+  setTimeout(()=>{
+    popup.style.transform='translateY(100px)';popup.style.opacity='0';popup.style.pointerEvents='none';
+    setTimeout(showPopup,8000+Math.random()*12000);
+  },4500);
+}
+setTimeout(showPopup,4000+Math.random()*5000);
+</script>
+</body>
+</html>
